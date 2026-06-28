@@ -6,3 +6,4 @@ __pycache__/
 instance/
 crypto/archive/
 crypto/encrypted_logs/
+actions-runner/
