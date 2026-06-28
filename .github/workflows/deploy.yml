@@ -1,0 +1,22 @@
+name: Deploy LogSeal
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy LogSeal with Docker Compose
+        run: |
+          cd /home/bigul/logseal
+          git fetch origin main
+          git reset --hard origin/main
+          docker compose up -d --build
+          docker image prune -f

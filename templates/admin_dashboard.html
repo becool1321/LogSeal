@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Admin page</h1>
+
+<p><b>LogSeal Security Control Panel</b></p>
+
+<hr>
+
+<h2>PKI Security Status</h2>
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <tr>
+        <th>Logseal Feature</th>
+        <th>Status</th>
+    </tr>
+    <tr><td>RSA Public Key Infrastructure</td><td>Enabled</td></tr>
+    <tr><td>Certificate Validation</td><td>Enabled</td></tr>
+    <tr><td>Certificate-Based Authentication</td><td>Enabled</td></tr>
+    <tr><td>Digital Signatures</td><td>Enabled</td></tr>
+    <tr><td>Hybrid Encryption AES-256-GCM + RSA</td><td>Enabled</td></tr>
+    <tr><td>Hash Chain Integrity</td><td>Enabled</td></tr>
+    <tr><td>Tamper Detection Engine</td><td>Enabled</td></tr>
+    <tr><td>Security Alerting</td><td>Enabled</td></tr>
+    <tr><td>Audit Logging</td><td>Enabled</td></tr>
+    <tr><td>Automated Verification</td><td>Enabled</td></tr>
+</table>
+
+<hr>
+
+<h3>Security Actions</h3>
+
+<a href="{{ url_for('admin_verify') }}"><button>Verify Index Integrity</button></a><br><br>
+<a href="{{ url_for('admin_seals') }}"><button>View Seal Metadata</button></a><br><br>
+<a href="{{ url_for('admin_alerts') }}"><button>View Security Alerts</button></a><br><br>
+<a href="{{ url_for('admin_certificates') }}"><button>Manage Certificates</button></a><br><br>
+<a href="{{ url_for('admin_audit_logs') }}"><button>Review Audit Logs</button></a><br><br>
+<a href="{{ url_for('admin_users') }}"><button>Manage Users</button></a><br><br>
+<a href="{{ url_for('admin_keystore') }}">
+    <button>PKCS#12 Keystore Status</button><br></br>
+</a>
+<a href="{{ url_for('admin_crl') }}">
+    <button>Certificate Revocation Status</button><br><br>
+</a>
+<a href="{{ url_for('admin_export_archive') }}"><button>Export Encrypted Archive</button></a><br><br>
+<a href="{{ url_for('admin_automation') }}"><button>Automation Status</button></a><br><br>
+<a href="{{ url_for('admin_encryption') }}"><button>Hybrid Encryption Status</button></a><br><br>
+<a href="{{ url_for('admin_statistics') }}"><button>Security Statistics</button></a><br><br>
+<a href="{{ url_for('admin_email_alerts') }}"><button>Email Alert Status</button></a><br><br>
+
+<hr>
+
+<p>For Admin Only</p>
+
+{% endblock %}

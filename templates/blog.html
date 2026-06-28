@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Security Blog</h1>
+
+<div class="card">
+    <h3>Why Log Integrity Matters</h3>
+    <p>Attackers may modify logs to hide activity. LogSeal protects log integrity using Open-search, PKI, hash chains, and digital signatures.</p>
+</div>
+
+<div class="card">
+    <h3>PKI-Based Log Protection</h3>
+    <p>Certificates verify which trusted identity sealed the log index. If logs are changed later, verification fails.</p>
+</div>
+{% endblock %}

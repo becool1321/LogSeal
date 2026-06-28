@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Encrypted Log Archive</h1>
+
+<h3 style="color:green;">Hybrid Encryption Completed</h3>
+
+<table border="1" cellpadding="8">
+<tr>
+    <th>Item</th>
+    <th>Value</th>
+</tr>
+<tr>
+    <td>Original Export</td>
+    <td>{{ archive_file }}</td>
+</tr>
+<tr>
+    <td>AES Encrypted Archive</td>
+    <td>{{ encrypted_file }}</td>
+</tr>
+<tr>
+    <td>RSA Encrypted AES Key</td>
+    <td>{{ encrypted_key }}</td>
+</tr>
+<tr>
+    <td>Encryption Algorithm</td>
+    <td>AES-256-GCM</td>
+</tr>
+<tr>
+    <td>Key Protection</td>
+    <td>RSA Public Key Wrapping</td>
+</tr>
+</table>
+
+<br>
+<a href="{{ url_for('admin_dashboard') }}">Back to Admin Dashboard</a>
+
+{% endblock %}

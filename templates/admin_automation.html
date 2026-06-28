@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Automation Status</h1>
+
+<h2>Automatic Verification</h2>
+<p><b>Status:</b> Enabled</p>
+<p><b>Interval:</b> Every 5 minutes</p>
+
+<h3>Recent Verification Logs</h3>
+<pre>
+{% for line in verification_logs %}
+{{ line }}
+{% endfor %}
+</pre>
+
+<hr>
+
+<h2>Automatic Daily Sealing</h2>
+<p><b>Status:</b> Enabled</p>
+<p><b>Schedule:</b> Daily at 11:55 PM</p>
+
+<h3>Recent Seal Logs</h3>
+<pre>
+{% for line in seal_logs %}
+{{ line }}
+{% endfor %}
+</pre>
+
+<br>
+<a href="{{ url_for('admin_dashboard') }}">Back to Admin Dashboard</a>
+
+{% endblock %}

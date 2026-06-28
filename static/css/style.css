@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #222;
+}
+
+nav {
+    background: #111827;
+    padding: 15px 40px;
+    color: white;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+nav h2 {
+    margin-right: auto;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.hero {
+    background: white;
+    padding: 60px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+form {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 420px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+}
+
+button, .btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.flash {
+    background: #dbeafe;
+    padding: 12px;
+    border-radius: 6px;
+}

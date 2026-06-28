@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Hybrid Encryption Status</h1>
+
+<table border="1" cellpadding="8">
+
+<tr>
+    <th>Component</th>
+    <th>Status</th>
+</tr>
+
+<tr>
+    <td>AES-256-GCM Encryption</td>
+    <td>Enabled</td>
+</tr>
+
+<tr>
+    <td>RSA Key Wrapping</td>
+    <td>Enabled</td>
+</tr>
+
+<tr>
+    <td>Archive Export</td>
+    <td>Enabled</td>
+</tr>
+
+<tr>
+    <td>Confidentiality Protection</td>
+    <td>Enabled</td>
+</tr>
+
+</table>
+
+<br>
+
+<a href="{{ url_for('admin_dashboard') }}">
+Back to Admin Dashboard
+</a>
+
+{% endblock %}

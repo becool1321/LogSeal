@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Certificate Revocation Status</h1>
+
+{% if crl_exists %}
+
+<h3 style="color:green;">CRL Available</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+    <th>Property</th>
+    <th>Value</th>
+</tr>
+
+<tr>
+    <td>CRL Status</td>
+    <td>Available</td>
+</tr>
+
+<tr>
+    <td>CRL Path</td>
+    <td>{{ crl_path }}</td>
+</tr>
+
+<tr>
+    <td>Revocation Support</td>
+    <td>Enabled</td>
+</tr>
+
+<tr>
+    <td>Purpose</td>
+    <td>Certificate Revocation Checking</td>
+</tr>
+
+</table>
+
+{% else %}
+
+<h3 style="color:red;">CRL Not Found</h3>
+
+<p>Expected path:</p>
+
+<code>{{ crl_path }}</code>
+
+{% endif %}
+
+<br><br>
+
+<a href="{{ url_for('admin_dashboard') }}">
+    Back to Admin Dashboard
+</a>
+
+{% endblock %}

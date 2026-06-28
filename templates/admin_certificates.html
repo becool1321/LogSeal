@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Manage Certificates</h1>
+
+<h3>Certificate Validation Status</h3>
+<pre>{{ cert_status.verify_output }}</pre>
+
+<h3>Certificate Fingerprint</h3>
+<pre>{{ cert_status.fingerprint }}</pre>
+
+<h3>Certificate Details</h3>
+<pre>{{ cert_status.details }}</pre>
+
+<br>
+<a href="{{ url_for('admin_dashboard') }}">Back to Admin Dashboard</a>
+{% endblock %}

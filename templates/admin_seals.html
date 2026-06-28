@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Seal Metadata</h1>
+
+{% if seals %}
+<table border="1" cellpadding="8" cellspacing="0">
+    <tr>
+        <th>ID</th>
+        <th>Index Name</th>
+        <th>Final Hash</th>
+        <th>Total Logs</th>
+        <th>Seal Time</th>
+        <th>Version</th>
+        <th>Algorithm</th>
+        <th>Signature</th>
+    </tr>
+
+    {% for seal in seals %}
+    <tr>
+        <td>{{ seal[0] }}</td>
+        <td>{{ seal[1] }}</td>
+        <td>{{ seal[2][:20] }}...</td>
+        <td>{{ seal[3] }}</td>
+        <td>{{ seal[4] }}</td>
+        <td>{{ seal[5] }}</td>
+        <td>{{ seal[6] }}</td>
+        <td>{{ seal[7][:20] if seal[7] else "None" }}...</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No seal metadata found.</p>
+{% endif %}
+
+<br>
+<a href="{{ url_for('admin_dashboard') }}">Back to Admin Dashboard</a>
+{% endblock %}

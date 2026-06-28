@@ -1,0 +1,42 @@
+services:
+  opensearch:
+    image: opensearchproject/opensearch:2.13.0
+    container_name: logseal-opensearch
+    environment:
+      - discovery.type=single-node
+      - plugins.security.disabled=true
+      - DISABLE_INSTALL_DEMO_CONFIG=true
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=Admin@2026
+      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+    volumes:
+      - opensearch_data:/usr/share/opensearch/data
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:2.13.0
+    container_name: logseal-opensearch-dashboards
+    environment:
+      - OPENSEARCH_HOSTS=["http://opensearch:9200"]
+      - DISABLE_SECURITY_DASHBOARDS_PLUGIN=true
+    ports:
+      - "5601:5601"
+    depends_on:
+      - opensearch
+
+  flask:
+    build: .
+    container_name: logseal-flask
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./instance:/app/instance
+      - ./pki:/app/pki
+    depends_on:
+      - opensearch
+
+volumes:
+  opensearch_data:

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Index Verification Result</h1>
+
+<p><b>Index:</b> {{ result.index_name }}</p>
+
+{% if result.status %}
+
+<h2 style="color:green;">✓ VERIFIED</h2>
+
+<p>{{ result.message }}</p>
+
+<p><b>Total Logs:</b> {{ result.total_logs }}</p>
+
+<p><b>Stored Hash:</b></p>
+<pre>{{ result.stored_hash }}</pre>
+
+<p><b>Current Hash:</b></p>
+<pre>{{ result.current_hash }}</pre>
+
+<p><b>Signature Valid:</b> {{ result.signature_valid }}</p>
+
+{% else %}
+
+<h2 style="color:red;">✗ VERIFICATION FAILED</h2>
+
+<p>{{ result.message }}</p>
+
+<p><b>Total Logs:</b> {{ result.total_logs }}</p>
+
+<p><b>Stored Hash:</b></p>
+<pre>{{ result.stored_hash }}</pre>
+
+<p><b>Current Hash:</b></p>
+<pre>{{ result.current_hash }}</pre>
+
+<p><b>Signature Valid:</b> {{ result.signature_valid }}</p>
+
+{% endif %}
+
+<br>
+<a href="{{ url_for('admin_dashboard') }}">Back To Dashboard</a>
+
+{% endblock %}
