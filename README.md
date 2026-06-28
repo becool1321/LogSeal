@@ -3,15 +3,12 @@
 ## Overview
 
 LogSeal is a PKI-based secure log integrity monitoring system developed using Flask, OpenSearch, OpenSearch Dashboards, Docker, and modern cryptographic techniques. The system securely collects application logs, stores them in OpenSearch, cryptographically seals each daily log index using a SHA-256 hash chain, digitally signs the final seal using RSA, verifies log integrity, detects tampering and replay attacks, generates security alerts, and sends email notifications to administrators.
-
 The project demonstrates how Public Key Infrastructure (PKI) can be integrated into centralized log management to provide confidentiality, integrity, authenticity, and non-repudiation of security logs.
 
 ---
-
 # Features
 
 ## Web Application
-
 * User Registration
 * User Login
 * User Logout
@@ -20,9 +17,7 @@ The project demonstrates how Public Key Infrastructure (PKI) can be integrated i
 * Shopping Cart
 * Dashboard
 * Admin Dashboard
-
 ---
-
 ## Logging
 
 * User activity logging
