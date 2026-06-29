@@ -90,7 +90,8 @@ logseal/
 ---
 # Python Requirements
 All dependencies are listed inside
-```requirements.txt
+```
+requirements.txt
 ```
 Create virtual environment
 ```bash
