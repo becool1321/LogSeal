@@ -25,13 +25,6 @@ The project demonstrates how Public Key Infrastructure (PKI) can be integrated i
 * Daily OpenSearch indices
 * Automatic timestamp generation
 * Structured JSON logging
-
-Example index:
-
-```
-logs-YYYY-MM-DD
-```
-
 ---
 
 ## Security Features
@@ -60,7 +53,7 @@ logs-YYYY-MM-DD
 | Dashboard     | OpenSearch Dashboards |
 | Cryptography  | RSA, SHA-256, AES-GCM |
 | PKI           | OpenSSL               |
-| Email         | Gmail SMTP            |
+| Email         | Gmail SMTP, OpenSearch Notifications|
 | Deployment    | Docker                |
 | Automation    | Cron                  |
 
@@ -91,65 +84,23 @@ logseal/
 ├── export_logs.py
 ├── automation_runner.py
 ├── auto_seal_runner.py
-└── .env.example
+└── .env (Replacer contain with .env example)
 ```
 
 ---
-
-# requirement.txt
-
-Before running LogSeal install:
-
-anyio==4.13.0
-blinker==1.9.0
-certifi==2026.5.20
-cffi==2.0.0
-click==8.4.1
-cryptography==48.0.0
-Flask==3.1.3
-Flask-Login==0.6.3
-Flask-SQLAlchemy==3.1.1
-greenlet==3.5.1
-idna==3.16
-itsdangerous==2.2.0
-Jinja2==3.1.6
-MarkupSafe==3.0.3
-pycparser==3.0
-python-dateutil==2.9.0.post0
-python-dotenv==1.2.2
-six==1.17.0
-sniffio==1.3.1
-SQLAlchemy==2.0.50
-typing_extensions==4.15.0
-urllib3==2.7.0
-Werkzeug==3.1.8
-opensearch-py==2.8.0
-pycryptodome
----
-
 # Python Requirements
-
 All dependencies are listed inside
-
+```requirements.txt
 ```
-requirements.txt
-```
-
 Create virtual environment
-
 ```bash
 python3 -m venv venv
 ```
-
 Activate
-
 Linux
-
 ```bash
 source venv/bin/activate
 ```
-
-W
 Install packages
 
 ```bash
@@ -157,113 +108,43 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Verify
-
-```bash
-pip list
-```
-
----
-
 # Environment Configuration
-
 Create
-
 ```
 .env
 ```
-
 Example
 
 ```env
 SECRET_KEY=CHANGE_ME
-
 OPENSEARCH_URL=http://opensearch:9200
-
 SMTP_SERVER=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USERNAME=your_email@gmail.com
 SMTP_PASSWORD=your_google_app_password
-
 ALERT_RECIPIENT=your_email@gmail.com
 ```
-
-Never upload
-
-```
-.env
-```
-
-Instead upload
-
-```
-.env.example
-```
-
----
-
 # Docker
-
 Build project
-
 ```bash
 docker compose up -d --build
 ```
-
-Stop
-
-```bash
-docker compose down
-```
-
-Restart
-
-```bash
-docker compose restart
-```
-
-Check containers
-
-```bash
-docker ps
-```
-
-Expected
-
-```
-logseal-flask
-logseal-opensearch
-logseal-opensearch-dashboards
-```
-
----
-
 # Access URLs
-
 Flask
-
 ```
 http://localhost:5000
 ```
-
 OpenSearch
-
 ```
 http://localhost:9200
 ```
-
 OpenSearch Dashboards
-
 ```
 http://localhost:5601
 ```
-
 ---
-
 # OpenSearch Configuration
-
 Daily logs
-
 ```
 logs-YYYY-MM-DD
 ```
@@ -273,19 +154,14 @@ Security Alerts
 ```
 logseal-alerts
 ```
-
 List indices
 
 ```bash
 curl http://localhost:9200/_cat/indices?v
 ```
-
 ---
-
 # OpenSearch Dashboards
-
 Create two index patterns.
-
 ## Activity Logs
 
 ```
@@ -491,19 +367,13 @@ ADMIN_VIEW_EMAIL_ALERTS
 ```
 
 ---
-
 # PKI Configuration
-
 LogSeal uses a private Public Key Infrastructure (PKI).
-
 Directory:
-
 ```text
 pki/
 ```
-
 Contains:
-
 ```text
 Root CA
 Certificates
@@ -593,11 +463,8 @@ This prevents unauthorized log modification.
 ---
 
 # Digital Signature
-
 The final hash is digitally signed using RSA.
-
 Metadata stored:
-
 ```text
 Index Name
 Final Hash
@@ -606,26 +473,19 @@ Seal Timestamp
 Algorithm
 Digital Signature
 ```
-
 ---
-
 # Seal Metadata
-
 Navigate to:
-
 ```text
 Admin → Seal Metadata
 ```
-
 Each seal stores:
-
 * Index Name
 * Seal Version
 * Total Logs
 * Final Hash
 * RSA Signature
 * Timestamp
-
 ---
 
 # Replay Protection
@@ -744,26 +604,20 @@ CRITICAL
 # Hybrid Encryption
 
 Log archives are encrypted before export.
-
 Algorithm:
-
 * AES-GCM
 * RSA Key Wrapping
 
 Files are stored inside:
-
 ```text
 crypto/archive/
 ```
-
 Encrypted archives:
 
 ```text
 crypto/encrypted_logs/
 ```
-
 ---
-
 # Export Encrypted Archive
 
 Navigate:
@@ -781,7 +635,7 @@ The system:
 
 ---
 
-# Email Notifications
+# Email Notifications (Flask SMTP + OpenSearch Notifications)
 
 Two notification mechanisms exist.
 
@@ -805,7 +659,7 @@ Example:
 SMTP_SERVER=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USERNAME=your_email@gmail.com
-SMTP_PASSWORD=your_google_app_password
+SMTP_PASSWORD=your_16_digit_google_app_password
 ALERT_RECIPIENT=recipient@gmail.com
 ```
 
@@ -856,17 +710,6 @@ Recommended:
 
 55 23 * * * docker exec logseal-flask python auto_seal_runner.py >> final_daily_seal.log 2>&1
 ```
-
-Automation logs:
-
-```text
-automation.log
-seal_automation.log
-final_daily_seal.log
-```
-
----
-
 # Testing Guide
 
 ## Test User Logging
@@ -969,103 +812,9 @@ http://localhost:5601
 ```
 
 Verify:
-
 Activity Dashboard
-
 Security Dashboard
-
 ---
-
-# Common Commands
-
-Start:
-
-```bash
-docker compose up -d --build
-```
-
-Stop:
-
-```bash
-docker compose down
-```
-
-Restart:
-
-```bash
-docker compose restart
-```
-
-Flask logs:
-
-```bash
-docker logs logseal-flask
-```
-
-OpenSearch logs:
-
-```bash
-docker logs logseal-opensearch
-```
-
-Dashboards logs:
-
-```bash
-docker logs logseal-opensearch-dashboards
-```
-
-List indices:
-
-```bash
-curl http://localhost:9200/_cat/indices?v
-```
-
-Seal:
-
-```bash
-docker exec -it logseal-flask python seal_index.py
-```
-
-Verify:
-
-```bash
-docker exec -it logseal-flask python verify_index.py
-```
-
----
-
-# Troubleshooting
-
-## Email not sending
-
-* Verify Google App Password
-* Restart OpenSearch
-* Check sender name
-* Verify SMTP configuration
-
----
-
-## Dashboard shows no data
-
-* Confirm index patterns
-* Verify timestamp field
-* Refresh dashboards
-
----
-
-## Verification fails
-
-* New logs may have been generated after sealing.
-* Run:
-
-```bash
-docker exec -it logseal-flask python seal_index.py
-```
-
-before verifying again.
-
----
-
 # Future Improvements
 
 * Multi-factor authentication
@@ -1076,11 +825,7 @@ before verifying again.
 * Role-Based Access Control (RBAC)
 * Immutable object storage
 * Distributed cluster support
-
 ---
-
 # License
-
 This project was developed for academic purposes as part of a cybersecurity coursework project.
-
 It demonstrates secure log integrity monitoring using PKI, OpenSearch, Docker, and modern cryptographic techniques.
