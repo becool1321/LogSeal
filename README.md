@@ -96,20 +96,35 @@ logseal/
 
 ---
 
-# Prerequisites
+# requirement.txt
 
 Before running LogSeal install:
 
-* Python 3.13 (recommended)
-* Docker Engine
-* Docker Compose
-* Git
-* OpenSSL
-* Gmail account
-* Google App Password
-* OpenSearch
-* OpenSearch Dashboards
-
+anyio==4.13.0
+blinker==1.9.0
+certifi==2026.5.20
+cffi==2.0.0
+click==8.4.1
+cryptography==48.0.0
+Flask==3.1.3
+Flask-Login==0.6.3
+Flask-SQLAlchemy==3.1.1
+greenlet==3.5.1
+idna==3.16
+itsdangerous==2.2.0
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+pycparser==3.0
+python-dateutil==2.9.0.post0
+python-dotenv==1.2.2
+six==1.17.0
+sniffio==1.3.1
+SQLAlchemy==2.0.50
+typing_extensions==4.15.0
+urllib3==2.7.0
+Werkzeug==3.1.8
+opensearch-py==2.8.0
+pycryptodome
 ---
 
 # Python Requirements
@@ -134,12 +149,7 @@ Linux
 source venv/bin/activate
 ```
 
-Windows
-
-```powershell
-venv\Scripts\activate
-```
-
+W
 Install packages
 
 ```bash
